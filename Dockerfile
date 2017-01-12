@@ -16,7 +16,10 @@ RUN yum update --skip-broken && yum install --skip-broken -y ca-certificates cur
   && cd /usr/src/ \
   && curl -Ls http://am1.php.net/get/php-7.1.0.tar.gz/from/this/mirror -o php-7.1.0.tar.gz \
   && tar -xzvf php-7.1.0.tar.gz
-RUN yum swap -- remove fakesystemd -- install systemd systemd-libs
+
+RUN yum swap -y fakesystemd systemd && \
+    yum install -y systemd-devel
+
 RUN rpm --rebuilddb && yum install -y libxml2-devel zlib-devel && yum install -y openssl-devel 
 RUN cd  /usr/src/php-7.1.0 \
   && ./configure \
