@@ -22,7 +22,7 @@ RUN cd  /usr/src/php-7.1.0 \
     --prefix=${INSTALL_PATH} \
     --with-config-file-path=${INSTALL_PATH}/etc \
     --with-config-file-scan-dir=${INSTALL_PATH}/etc/php.d \
-    --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd \
+#     --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd \
     --with-iconv-dir \
     --with-jpeg-dir \
     --with-png-dir \
