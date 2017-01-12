@@ -16,7 +16,7 @@ RUN yum update --skip-broken && yum install --skip-broken -y ca-certificates cur
   && cd /usr/src/ \
   && curl -Ls http://am1.php.net/get/php-7.1.0.tar.gz/from/this/mirror -o php-7.1.0.tar.gz \
   && tar -xzvf php-7.1.0.tar.gz
-RUN rpm --rebuilddb && yum install --skip-broken -y libxml2-devel openssl-devel zlib-devel
+RUN rpm --rebuilddb && yum install --skip-broken -y libxml2-devel openssl openssl-devel zlib-devel
 RUN cd  /usr/src/php-7.1.0 \
   && ./configure \
     --prefix=${INSTALL_PATH} \
