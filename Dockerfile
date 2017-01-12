@@ -17,10 +17,39 @@ RUN yum update --skip-broken && yum install --skip-broken -y ca-certificates cur
   && curl -Ls http://am1.php.net/get/php-7.1.0.tar.gz/from/this/mirror -o php-7.1.0.tar.gz \
   && tar -xzvf php-7.1.0.tar.gz
 RUN cd  /usr/src/php-7.1.0 \
-  && ./configure --prefix=${INSTALL_PATH} \
-      --enable-fpm \
-      --with-fpm-user=${USER} \
-      --with-fpm-group=${GROUP} \
-      --with-fpm-systemd
+  && ./configure \
+    —prefix=${INSTALL_PATH} \
+    —with-config-file-path=${INSTALL_PATH}/etc \
+    —with-config-file-scan-dir=${INSTALL_PATH}/etc/php.d \
+    —with-mysql=mysqlnd —with-mysqli=mysqlnd —with-pdo-mysql=mysqlnd \
+    —with-iconv-dir \
+    —with-jpeg-dir \
+    —with-png-dir \
+    —with-zlib \
+    —with-libxml-dir \
+    —enable-xml \
+    —disable-rpath \
+    —enable-bcmath \
+    —enable-shmop \
+    —enable-sysvsem \
+    —enable-inline-optimization \
+    —with-curl \
+    —with-mcrypt \
+    —enable-mbregex \
+    —enable-fpm \
+    —enable-mbstring \
+    —with-gd \
+    —enable-gd-native-ttf \
+    —with-openssl \
+    —with-mhash \
+    —enable-pcntl \
+    —enable-sockets \
+    —with-xmlrpc \
+    —enable-zip \
+    —enable-mbstring \
+    —enable-soap \
+    —enable-embed \
+    —without-pear
+      
       
     
