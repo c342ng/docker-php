@@ -20,7 +20,7 @@ RUN yum update --skip-broken && yum install --skip-broken -y ca-certificates cur
 RUN rpm --rebuilddb && yum swap -y fakesystemd systemd && \
     yum install -y systemd-devel
 
-RUN rpm --rebuilddb && yum install -y libxml2-devel zlib-devel && yum install -y openssl-devel curl-devel libjpeg-devel
+RUN rpm --rebuilddb && yum install -y libxml2-devel zlib-devel && yum install -y openssl-devel curl-devel libjpeg-devel libpng-devel
 RUN cd  /usr/src/php-7.1.0 \
   && ./configure \
     --prefix=${INSTALL_PATH} \
