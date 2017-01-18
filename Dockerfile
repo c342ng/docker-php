@@ -50,6 +50,4 @@ RUN cd  /usr/src/php-7.1.0 \
     --enable-zip \
     --enable-mbstring \
     --enable-embed
-      
-      
-    
+ RUN cd  /usr/src/php-7.1.0 && make install && make clean
