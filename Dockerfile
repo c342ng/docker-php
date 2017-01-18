@@ -49,7 +49,7 @@ RUN cd  /usr/src/php-7.1.0 \
     --with-xmlrpc \
     --enable-zip \
     --enable-mbstring \
-    --enable-embed \
+    --enable-embed
       
       
     
