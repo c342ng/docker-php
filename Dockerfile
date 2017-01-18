@@ -15,20 +15,16 @@ RUN mkdir -p ${INSTALL_PATH} ${DATA_PATH} ${LOG_PATH} ${CONF_PATH} \
 RUN yum update --skip-broken && yum install --skip-broken -y ca-certificates curl tar gcc make \
   && cd /usr/src/ \
   && curl -Ls http://am1.php.net/get/php-7.1.0.tar.gz/from/this/mirror -o php-7.1.0.tar.gz \
-  && tar -xzvf php-7.1.0.tar.gz
-
-RUN rpm --rebuilddb && yum swap -y fakesystemd systemd && \
-    yum install -y systemd-devel
-
-RUN rpm --rebuilddb && yum install -y libxml2-devel zlib-devel && yum install -y \
-  openssl-devel curl-devel libjpeg-devel libpng-devel libmcrypt-devel
+  && tar -xzvf php-7.1.0.tar.gz \
+  && rpm --rebuilddb && yum swap -y fakesystemd systemd && yum install -y systemd-devel \
+  && yum install -y libxml2-devel zlib-devel && yum install -y \
+  openssl-devel curl-devel libjpeg-devel libpng-devel
   
 RUN cd  /usr/src/php-7.1.0 \
   && ./configure \
     --prefix=${INSTALL_PATH} \
     --with-config-file-path=${INSTALL_PATH}/etc \
     --with-config-file-scan-dir=${INSTALL_PATH}/etc/php.d \
-#     --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd \
     --with-iconv-dir \
     --with-jpeg-dir \
     --with-png-dir \
@@ -41,7 +37,6 @@ RUN cd  /usr/src/php-7.1.0 \
     --enable-sysvsem \
     --enable-inline-optimization \
     --with-curl \
-    --with-mcrypt \
     --enable-mbregex \
     --enable-fpm \
     --enable-mbstring \
@@ -54,9 +49,7 @@ RUN cd  /usr/src/php-7.1.0 \
     --with-xmlrpc \
     --enable-zip \
     --enable-mbstring \
-    --enable-soap \
     --enable-embed \
-    --without-pear
       
       
     
