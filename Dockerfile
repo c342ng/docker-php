@@ -50,4 +50,5 @@ RUN rpm --rebuilddb && yum swap -y fakesystemd systemd \
     --enable-zip \
     --enable-mbstring \
     --enable-embed \
-  && RUN cd  /usr/src/php-7.1.0 && make install && make clean
+  && cd  /usr/src/php-7.1.0 && make install && make clean \
+  && yum clean all 
