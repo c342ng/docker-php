@@ -19,34 +19,36 @@ RUN rpm --rebuilddb && yum swap -y fakesystemd systemd \
   && curl -Ls http://am1.php.net/get/php-7.1.0.tar.gz/from/this/mirror -o php-7.1.0.tar.gz \
   && tar -xzvf php-7.1.0.tar.gz
   
-# RUN cd  /usr/src/php-7.1.0 \
-#   && ./configure \
-#     --prefix=${INSTALL_PATH} \
-#     --with-config-file-path=${INSTALL_PATH}/etc \
-#     --with-config-file-scan-dir=${INSTALL_PATH}/etc/php.d \
-#     --with-iconv-dir \
-#     --with-jpeg-dir \
-#     --with-png-dir \
-#     --with-zlib \
-#     --with-libxml-dir \
-#     --enable-xml \
-#     --disable-rpath \
-#     --enable-bcmath \
-#     --enable-shmop \
-#     --enable-sysvsem \
-#     --enable-inline-optimization \
-#     --with-curl \
-#     --enable-mbregex \
-#     --enable-fpm \
-#     --enable-mbstring \
-#     --with-gd \
-#     --enable-gd-native-ttf \
-#     --with-openssl \
-#     --with-mhash \
-#     --enable-pcntl \
-#     --enable-sockets \
-#     --with-xmlrpc \
-#     --enable-zip \
-#     --enable-mbstring \
-#     --enable-embed
-#  RUN cd  /usr/src/php-7.1.0 && make install && make clean
+RUN cd  /usr/src/php-7.1.0 \
+  && ./configure \
+    --prefix=/opt/php \
+    --with-config-file-path=/opt/php/etc \
+    --with-config-file-scan-dir=/opt/php/etc/php.d \
+    --enable-fpm \
+    --with-fpm-user=www-data \
+    --with-fpm-group=www-data \    
+    --with-iconv-dir \
+    --with-jpeg-dir \
+    --with-png-dir \
+    --with-zlib \
+    --with-libxml-dir \
+    --enable-xml \
+    --disable-rpath \
+    --enable-bcmath \
+    --enable-shmop \
+    --enable-sysvsem \
+    --enable-inline-optimization \
+    --with-curl \
+    --enable-mbregex \
+    --enable-mbstring \
+    --with-gd \
+    --enable-gd-native-ttf \
+    --with-openssl \
+    --with-mhash \
+    --enable-pcntl \
+    --enable-sockets \
+    --with-xmlrpc \
+    --enable-zip \
+    --enable-mbstring \
+    --enable-embed
+  RUN cd  /usr/src/php-7.1.0 && make install && make clean
