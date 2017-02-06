@@ -20,10 +20,9 @@ RUN rpm --rebuilddb && yum swap -y fakesystemd systemd \
   && tar -xzvf php-7.1.0.tar.gz \
   && cd  /usr/src/php-7.1.0 \
   && ./configure \
-    --prefix=/opt/php \
-    --localstatedir=${LOG_PATH} \
-    --with-config-file-path=/opt/php/etc \
-    --with-config-file-scan-dir=/opt/php/etc/php.d \
+    --prefix=${INSTALL_PATH} \
+    --with-config-file-path=${INSTALL_PATH}/etc \
+    --with-config-file-scan-dir=${INSTALL_PATH}/etc/php.d \
     --enable-fpm \
     --with-fpm-user=${USER} \
     --with-fpm-group=${GROUP} \
