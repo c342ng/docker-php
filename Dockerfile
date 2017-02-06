@@ -52,4 +52,7 @@ RUN rpm --rebuilddb && yum swap -y fakesystemd systemd \
     --enable-mbstring \
     --enable-embed \
   && cd  /usr/src/php-7.1.0 && make install && make clean \
-  && yum clean all 
+  && yum clean all
+  
+COPY php-fpm.conf ${CONF_PATH}
+COPY www.conf ${CONF_PATH}/php-fpm.d
