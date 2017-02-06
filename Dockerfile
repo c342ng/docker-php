@@ -56,5 +56,6 @@ RUN rpm --rebuilddb && yum swap -y fakesystemd systemd \
   && yum clean all
   
 ADD php-fpm.conf ${CONF_PATH}
+ADD php.ini ${CONF_PATH}
 ADD www.conf ${CONF_PATH}/php-fpm.d/
 ADD php-fpm ${INSTALL_PATH}/
