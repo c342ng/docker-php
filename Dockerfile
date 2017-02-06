@@ -10,7 +10,7 @@ ENV GROUP php
 
 RUN groupadd -r ${GROUP} && useradd -r -g ${GROUP} ${USER}
 RUN mkdir -p ${INSTALL_PATH} ${DATA_PATH} ${LOG_PATH} ${CONF_PATH} \
-  && chown "${GROUP}:${USER}" ${INSTALL_PATH} ${DATA_PATH} ${LOG_PATH} ${CONF_PATH}
+  && chown "${USER}:${GROUP}" ${INSTALL_PATH} ${DATA_PATH} ${LOG_PATH} ${CONF_PATH}
   
 RUN rpm --rebuilddb && yum swap -y fakesystemd systemd \
   && yum update -y && yum install -y ca-certificates curl tar gcc make \
