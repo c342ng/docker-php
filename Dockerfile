@@ -1,7 +1,7 @@
 FROM centos:centos7.1.1503
 
 ENV INSTALL_PATH /opt/php
-ENV CONF_PATH /opt/php/conf
+ENV CONF_PATH /opt/php/etc
 ENV DATA_PATH /data/php
 ENV LOG_PATH /data/logs/php
 ENV PID_PATH /data/run/php-fpm.pid
@@ -24,6 +24,7 @@ RUN rpm --rebuilddb && yum swap -y fakesystemd systemd \
     --with-config-file-path=/opt/php/etc \
     --with-config-file-scan-dir=/opt/php/etc/php.d \
     --enable-fpm \
+    --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd \
 #     --with-fpm-user=www-data \
 #     --with-fpm-group=www-data \    
     --with-iconv-dir \
