@@ -5,8 +5,8 @@ ENV CONF_PATH /opt/php/etc
 ENV DATA_PATH /data/php
 ENV LOG_PATH /data/logs/php
 ENV PID_PATH /data/run/php-fpm.pid
-ENV USER www-data
-ENV GROUP www-data
+ENV USER php-fpm
+ENV GROUP php
 
 RUN groupadd -r ${GROUP} && useradd -r -g ${GROUP} ${USER}
 RUN mkdir -p ${INSTALL_PATH} ${DATA_PATH} ${LOG_PATH} ${CONF_PATH} \
@@ -21,12 +21,13 @@ RUN rpm --rebuilddb && yum swap -y fakesystemd systemd \
   && cd  /usr/src/php-7.1.0 \
   && ./configure \
     --prefix=/opt/php \
+    --localstatedir=${LOG_PATH} \
     --with-config-file-path=/opt/php/etc \
     --with-config-file-scan-dir=/opt/php/etc/php.d \
     --enable-fpm \
+    --with-fpm-user=${USER} \
+    --with-fpm-group=${GROUP} \
     --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd \
-#     --with-fpm-user=www-data \
-#     --with-fpm-group=www-data \    
     --with-iconv-dir \
     --with-jpeg-dir \
     --with-png-dir \
