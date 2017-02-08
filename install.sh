@@ -7,6 +7,8 @@ group=php
 
 data_folders=""
 
+dep_softs="libpng libjpeg"
+
 #user & group
 egrep "^$group" /etc/group >& /dev/null
 if [ $? -ne 0 ]
@@ -40,4 +42,10 @@ for folder in $data_folders
       mkdir -p ${folder}
       chown ${user}:${group} ${folder}
     fi
+  done
+
+for soft in $dep_softs
+  do
+    echo  ${soft}
+    yum install -y ${soft}
   done
