@@ -7,7 +7,7 @@ group=php
 
 data_folders=""
 
-dep_softs="libpng libjpeg"
+dep_softs="libpng libjpeg librabbitmq"
 
 #user & group
 egrep "^$group" /etc/group >& /dev/null
