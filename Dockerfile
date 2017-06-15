@@ -44,7 +44,7 @@ RUN rpm --rebuilddb && yum swap -y fakesystemd systemd \
     --with-gd \
     --enable-gd-native-ttf \
     --with-webp-dir \
-    –-with-freetype-dir \
+    –-with-freetype-dir=DIR \
     --with-openssl \
     --with-mhash \
     --enable-pcntl \
