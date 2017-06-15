@@ -44,7 +44,7 @@ RUN rpm --rebuilddb && yum swap -y fakesystemd systemd \
     --with-gd \
     --enable-gd-native-ttf \
     --with-webp-dir \
-    –-with-freetype-dir=DIR \
+    –-with-freetype-dir \
     --with-openssl \
     --with-mhash \
     --enable-pcntl \
@@ -56,7 +56,7 @@ RUN rpm --rebuilddb && yum swap -y fakesystemd systemd \
   && cd  /usr/src/php-7.1.0 && make install && make clean \
   && rm -rf /usr/src/php-7.1.0* \
   && yum clean all
-  
+ 
 ADD php-fpm.conf ${CONF_PATH}
 ADD php.ini ${CONF_PATH}
 ADD www.conf ${CONF_PATH}/php-fpm.d/
